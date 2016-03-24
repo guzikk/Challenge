@@ -1,0 +1,17 @@
+Wprowadz dane zakladu
+
+<%= form_for(@bets) do |t| %>
+Name of Bet: <%= t.label :name %><br>
+			<%= t.text_field :name %><br>
+Description: <%= t.label :description %><br>
+			<%= t.text_field :description %><br>
+Rate: <%= t.label :credit %><br>
+			<%= t.number_field :credit %><br>
+User_1: <%= t.label :user_1_id %><br>
+			<%= t.number_field :user_1_id %><br>
+User_2: <%= t.label :user_2_id %><br>
+			<%= t.number_field :user_2_id %><br>
+Image: <%= t.label :image %><br>
+			<%= t.file_field :image %><br>
+			<%= t.submit "zatwierdz" %>
+<%end%>

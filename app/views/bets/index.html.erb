@@ -1,0 +1,11 @@
+<h1>Bets#New</h1>
+
+<% @bets.each do |t| %>
+Name of Bet: <%= t.name %><br>
+Description: <%= t.description %><br>
+Rate: <%= t.credit %><br>
+Image: <%= image_tag t.image.url(:thumb)%>
+Rate: <%= t.credit %><br>
+User 1: <%= t.user_1_id %><br>
+User 2: <%= t.user_2_id %><br><br><br>
+<%end%>

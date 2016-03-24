@@ -1,0 +1,10 @@
+<h1>Bets#show</h1>
+<p>Find me in app/views/bets/show.html.erb</p>
+
+Name of Bet: <%= @bets.name %><br>
+Description: <%= @bets.description %><br>
+Rate: <%= @bets.credit %><br>
+Image: <%= image_tag @bets.image.url(:thumb)%>
+Rate: <%= @bets.credit %><br>
+User 1: <%= @bets.user_1_id %><br>
+User 2: <%= @bets.user_2_id %><br><br><br>

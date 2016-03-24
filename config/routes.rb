@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+  #get 'bets/index'
+
+  #get 'bets/show'
+
+  #get 'bets/edit'
+
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'tasks/index'
 
   devise_for :users
-
+  resources :bets
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
