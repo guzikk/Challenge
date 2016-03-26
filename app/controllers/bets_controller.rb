@@ -1,6 +1,8 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
 
+layout 'bootstrap'
+
   def index
   	@bets = Bet.all
   	@bet = "aaas"
