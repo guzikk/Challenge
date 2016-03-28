@@ -3,15 +3,21 @@
 one:
   name: MyString
   description: MyText
-  user_1_id: 
-  user_2_id: 
   credit: 1
   image: 
+  proof: 
+  active: false
+  end_date_of_challenge: 2016-03-26 21:08:58
+  user_owner_id: 
+  user_participant_id: 
 
 two:
   name: MyString
   description: MyText
-  user_1_id: 
-  user_2_id: 
   credit: 1
   image: 
+  proof: 
+  active: false
+  end_date_of_challenge: 2016-03-26 21:08:58
+  user_owner_id: 
+  user_participant_id: 

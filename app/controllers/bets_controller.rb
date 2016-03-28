@@ -1,21 +1,36 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :inactive]
 
-layout 'bootstrap'
+  layout 'bootstrap'
 
   def index
-  	@bets = Bet.all
-  	@bet = "aaas"
+  	@bets = Bet.active
+    @current_date = DateTime.now
+  	
   end
 
   def new
+    @user = current_user
 	@bets = Bet.new  
   end
 
+  def my
+    @bets = current_user.bets
+    @current_date = DateTime.now
+    render :index
+  end
+
+  def inactive
+    @bets = Bet.inactive
+    @current_date = DateTime.now
+    render :index
+  end
+
   def create
-  	@bets = Bet.new(bet_params)
+  	@bets = current_user.bets.new(bet_params)
   	if @bets.save!
-  		redirect_to @bets
+  		redirect_to action: 'index'
   	else
   		redirect_to 'new'	
   	end	
@@ -45,7 +60,7 @@ layout 'bootstrap'
   end
 
   def bet_params
-  	params.require(:bet).permit(:name, :description, :user_1_id, :user_2_id, :credit, :image)
+  	params.require(:bet).permit(:name, :description, :credit, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge)
   end
 
 end

@@ -10,10 +10,74 @@ body {
     background-position: right top;
     background-size: cover;
     background-attachment: fixed;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.1) 60%), url("tlo3_small.jpg");
-}
+  }
 
 .navbar_login {
   float: right;
-
 }
+
+.opacity{
+  opacity: 0.7;
+}
+
+
+.backgroud_for_bets {
+    Width: 500px;
+    height: 180px;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 100px;
+}
+
+
+
+.margin_left {
+  text-align: center;
+}
+
+.margin {
+  margin-bottom: 50px;
+}
+
+.button {
+
+  width:70px;
+  height: 70px;
+  color:#f5f5f5;
+  border: 2px solid #f5f5f5;
+  box-shadow: 0 0 3px gray;
+  background: #464646;
+  border-radius:50%;
+  line-height: 1.33;
+  font-size: 20px;
+  font-weight:bold;
+  text-decoration:none;
+  padding: 16px 13px;
+}
+
+
+.user_owner {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-bottom:10px; 
+}
+
+.user_participant {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 400px;
+  margin-bottom:10px;
+}
+
+.bet_content {
+  position: absolute;
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 110px;
+  margin-bottom:10px; 
+  }
