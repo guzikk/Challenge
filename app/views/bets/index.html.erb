@@ -8,14 +8,14 @@
  <% current_days_percentage = (1-(current_days.to_f/start_days.to_f))*100 %>
 <div class="progress ">
   <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="current_days_percentage" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_days_percentage%>%">
-    <div class="">Progress of Challenge</div>
+    <div class=""><%= current_days_percentage.to_i%>%</div>
   </div>
   </div>
 
 <div class="user_owner"> <%= image_tag t.user_owner.avatar.url , class: "img-circle", width: "70px", height: "70px" %> </div>
 
 <div class="bet_content">
-Name of Bet: <%= t.name %><br>
+Name of Bet: <%= link_to(t.name, {:action=>'show', :id=>t.id}) %><br>
 Description: <%= t.description %><br>
 Rate: <%= t.credit %><br>
 </div>

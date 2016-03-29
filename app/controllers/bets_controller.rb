@@ -28,9 +28,11 @@ class BetsController < ApplicationController
   end
 
   def create
+
   	@bets = current_user.bets.new(bet_params)
   	if @bets.save!
-  		redirect_to action: 'index'
+  		BetMailer.welcome_email(@bets).deliver
+      redirect_to action: 'index'
   	else
   		redirect_to 'new'	
   	end	
@@ -46,7 +48,7 @@ class BetsController < ApplicationController
   def update
   	
   if	@bets.update(bet_params)
-  	
+  	BetMailer.welcome_email(@bets).deliver
 		redirect_to @bets
   	else
   		redirect 'new'	
@@ -60,7 +62,7 @@ class BetsController < ApplicationController
   end
 
   def bet_params
-  	params.require(:bet).permit(:name, :description, :credit, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge)
+  	params.require(:bet).permit(:name, :description, :credit, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation)
   end
 
 end

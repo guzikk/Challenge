@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326200850) do
+ActiveRecord::Schema.define(version: 20160329171448) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -56,10 +56,15 @@ ActiveRecord::Schema.define(version: 20160326200850) do
     t.integer  "user_participant_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "invitation"
+    t.string   "video_url"
+    t.integer  "user_winner_id"
+    t.integer  "status"
   end
 
   add_index "bets", ["user_owner_id"], name: "index_bets_on_user_owner_id"
   add_index "bets", ["user_participant_id"], name: "index_bets_on_user_participant_id"
+  add_index "bets", ["user_winner_id"], name: "index_bets_on_user_winner_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
