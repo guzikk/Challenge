@@ -40,6 +40,7 @@ class BetsController < ApplicationController
 
   def show
   	@bets = Bet.find(params[:id])
+    @post = Post.new
   end
 
   def edit

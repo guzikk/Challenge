@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+  resources :posts
   #get 'bets/index'
 
   #get 'bets/show'

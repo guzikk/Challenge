@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :bets, foreign_key: :user_owner_id
+	has_many :posts
 	
 	
   # Include default devise modules. Others available are:
