@@ -9,27 +9,21 @@ User Participant: <%= @bets.user_participant.email %><br><br><br>
 
 <h1>Users Posts</h1>
 
-
 <% @bets.posts.each do |post| %>
-<%if post.user_id == @bets.user_owner_id %>
-  <h4><%= image_tag post.user.avatar.url(:thumb), class: "img-circle", width: "50px", height: "50px" %>    <%= post.user.email %> </h4>
+  <%if post.user_id == @bets.user_owner_id %>
+    <h4><%= image_tag post.user.avatar.url(:thumb), class: "img-circle", width: "50px", height: "50px" %>    <%= post.user.email %> </h4>
   <%else%>
-   <h4><%= post.user.email %>    <%= image_tag post.user.avatar.url(:thumb), class: "img-circle", width: "50px", height: "50px" %> </h4>
-   <%end%>
+    <h4><%= post.user.email %>    <%= image_tag post.user.avatar.url(:thumb), class: "img-circle", width: "50px", height: "50px" %> </h4>
+  <%end%>
   <p>
     <%= post.content %>
   </p>
 <% end %>
 
-<!-- zeby można było urzyć @post musieliśmy dodać w topics_controller (bo w jego widoku jesteśmy) -->
-<!-- do akcji show ... bo w takim widoku jesteśmy .. zmienną współdzieloną @post -->
-<!-- dodatkowo, dodawanie postów jest mozliwe tylko dla zalogowanych użytkowników -->
-
 <% if user_signed_in? %>
   <%= form_for(@post) do |f| %>
     <div class="field">
- <%= f.text_area :content, class: "backgroud_for_form_content" %>
-      <!-- Wykorzystamy nowo poznaną sztuczkę :)))) -->
+      <%= f.text_area :content, class: "backgroud_for_form_content" %>
       <%= f.hidden_field :bet_id, :value => "#{@bets.id}" %>
       <%= f.hidden_field :user_id, :value => "#{current_user.id}" %>
     </div>

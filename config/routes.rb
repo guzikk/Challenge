@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'my'
       get 'inactive'
+      get 'finished'
     end
   end
 

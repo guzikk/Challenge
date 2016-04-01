@@ -1,4 +1,5 @@
 class BetsController < ApplicationController
+  
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :inactive]
 
@@ -10,9 +11,14 @@ class BetsController < ApplicationController
   	
   end
 
+  def finished
+    @bets = Bet.finished
+    @current_date = DateTime.now 
+  end
+
   def new
     @user = current_user
-	@bets = Bet.new  
+	  @bets = Bet.new  
   end
 
   def my
@@ -28,10 +34,9 @@ class BetsController < ApplicationController
   end
 
   def create
-
   	@bets = current_user.bets.new(bet_params)
   	if @bets.save!
-  		BetMailer.welcome_email(@bets).deliver
+      BetMailer.welcome_email(@bets).deliver if !@bets.invitation.empty?
       redirect_to action: 'index'
   	else
   		redirect_to 'new'	
@@ -47,23 +52,22 @@ class BetsController < ApplicationController
   end
 
   def update
-  	
-  if	@bets.update(bet_params)
-  	BetMailer.welcome_email(@bets).deliver
-		redirect_to @bets
+    if	@bets.update(bet_params)
+  	  BetMailer.welcome_email(@bets).deliver if !@bets.invitation.empty?
+		  redirect_to @bets
   	else
   		redirect 'new'	
   	end	  		
   end
 
   private
-
+  
   def set_bet
-      @bets = Bet.find(params[:id])
+    @bets = Bet.find(params[:id])
   end
 
   def bet_params
-  	params.require(:bet).permit(:name, :description, :credit, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation)
+  	params.require(:bet).permit(:name, :description, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation)
   end
 
 end
