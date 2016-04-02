@@ -50,11 +50,11 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar_login">
           <li><%= link_to "Bets", bets_path  %></li>
+          <li><%= link_to "Finished", finished_bets_path %></li>
           <% if user_signed_in? %>
           <li><%= link_to "My Bets", my_bets_path %></li>
-          <li><%= link_to "Finished", finished_bets_path %></li>
-            <li><%= link_to "Inactive", inactive_bets_path  %></li>
-            <%end%>
+          <li><%= link_to "Inactive", inactive_bets_path  %></li>
+          <%end%>
             
             
            

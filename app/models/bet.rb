@@ -2,6 +2,7 @@ class Bet < ActiveRecord::Base
  
   belongs_to :user_owner, class_name: "User"
   belongs_to :user_participant, class_name: "User"
+  belongs_to :user_winner, class_name: "User"
   has_many :posts
 
  	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -14,7 +15,6 @@ class Bet < ActiveRecord::Base
  	
   after_validation(on: :create) do 
    	self.active = false
-    self.credit = 1000
   end
 
   scope :active, ->{where active:true, status: 1}

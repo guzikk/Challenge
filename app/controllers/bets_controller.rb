@@ -1,14 +1,26 @@
 class BetsController < ApplicationController
   
+  before_action :check_finished
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show, :inactive]
+  before_action :authenticate_user!, except: [:index, :show, :finished]
+  
 
   layout 'bootstrap'
+
+  def check_finished
+    current_date = DateTime.now
+    bet = Bet.all
+    bet.each do |t|
+      if current_date.to_date == t.end_date_of_challenge.to_date
+        t.status = 0
+        t.save
+      end
+    end
+  end
 
   def index
   	@bets = Bet.active
     @current_date = DateTime.now
-  	
   end
 
   def finished
@@ -49,6 +61,14 @@ class BetsController < ApplicationController
   end
 
   def edit
+  end
+
+  def join
+    @bets = Bet.find(params[:id])
+    @bets.user_participant_id = current_user.id
+    @bets.save
+    @post = Post.new
+    render :show
   end
 
   def update

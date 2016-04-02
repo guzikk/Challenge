@@ -3,7 +3,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  background-image: url("tlo3_small.jpg");
+  background-image: url("tlo3_small2.jpg");
   background-repeat: no-repeat;
   background-position: right top;
   background-size: cover;
@@ -82,4 +82,10 @@ body {
   margin-top: 10px;
   margin-left: 110px;
   margin-bottom:10px; 
+  }
+
+  .bet_content_winner {
+  position: absolute;
+  float: center;
+  margin-top:100px; 
   }

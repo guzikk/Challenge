@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       get 'inactive'
       get 'finished'
     end
+    member do
+      get 'join'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
