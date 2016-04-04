@@ -1,12 +1,23 @@
-<h1>Bets#edit</h1>
-Wprowadz dane zakladu
+<h1>Bets <%=@bets.name%> edit</h1>
 
 <%= form_for(@bets) do |t| %>
 	<div class="backgroud_for_bets opacity">
-		Name of Bet: <%= t.text_field :name %><br>
-		Description: <%= t.text_area :description %><br>
-		Stake: <%= t.number_field :credit %><br>
-		End Date: <%= t.date_select :end_date_of_challenge %><br>
-		<%= t.submit "Challenge" %>
+		<% if @bets.user_participant_id.blank? && @bets.status == 1%>
+			Name of Bet: <%= t.text_field :name %><br>
+			Description: <%= t.text_area :description %><br>
+			Stake: <%= t.number_field :credit %><br>
+			End Date: <%= t.date_select :end_date_of_challenge %>
+		<%else%>
+			Name of Bet: <%= @bets.name %><br>
+			Description: <%= @bets.description %><br>
+			Stake: <%= @bets.credit %><br>
+			End Date: <%= @bets.end_date_of_challenge.to_date %><br><br>
+			My challenge is finished: <%= t.check_box :status, {}, 0,1 %><br>
+			Put your image proof: <br> <%= t.file_field :proof %><br>
+			Put link to your video proof: <br> <%= t.text_field :video_url %>
+
+		<%end%>
+		<br><br>
+		<%= t.submit "Confirm" %>
 	</div>
 <%end%>

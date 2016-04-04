@@ -40,7 +40,7 @@ class BetsController < ApplicationController
   end
 
   def inactive
-    @bets = Bet.inactive
+    @bets = Bet.inactive(current_user)
     @current_date = DateTime.now
     render :index
   end
@@ -61,20 +61,24 @@ class BetsController < ApplicationController
   end
 
   def edit
+
   end
 
   def join
     @bets = Bet.find(params[:id])
-    @bets.user_participant_id = current_user.id
-    @bets.save
+    if @bets.status == 1 && @bets.active == true && @bets.user_owner_id != current_user.id
+      @bets.user_participant_id = current_user.id
+      @bets.save
+    else
+      flash[:notice] = "I'm sorry you can't join to this challenge"
+    end
     @post = Post.new
     render :show
   end
 
   def update
     if	@bets.update(bet_params)
-  	  BetMailer.welcome_email(@bets).deliver if !@bets.invitation.empty?
-		  redirect_to @bets
+  	    redirect_to @bets
   	else
   		redirect 'new'	
   	end	  		
@@ -87,7 +91,7 @@ class BetsController < ApplicationController
   end
 
   def bet_params
-  	params.require(:bet).permit(:name, :description, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation)
+  	params.require(:bet).permit(:name, :description, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation, :status, :proof)
   end
 
 end

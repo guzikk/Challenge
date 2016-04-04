@@ -1,17 +1,24 @@
-<h1>Bets <%= @bets.name %></h1>
-<p>Find me in app/views/bets/show.html.erb</p>
+<%if @bets.status == 1%>
+  <h1>Challenge <%= @bets.name %></h1>
+<%else%>
+    <h1>Challenge <%= @bets.name %> finished</h1>
+<%end%>
+
 <%= @bets.user_owner.name %>
 Name of Bet: <%= @bets.name %><br>
 Description: <%= @bets.description %><br>
 Stake: <%= @bets.credit %><br>
 User Owner: <%= @bets.user_owner.email %><br>
 User Participant:
-<% if @bets.user_participant_id.blank? %>
-      <div class="btn btn-default"><%= link_to("Join", {:action=>'join', :id=>@bets.id})%></div>
+<% if @bets.user_participant_id.blank? && @bets.status == 1%>
+      <div class="btn btn-default"><%= link_to("Join", {:action=>'join', :id=>@bets.id})%></div><br><br>
     <%else%>
-    User Participant: <%= @bets.user_participant.email if !@bets.user_participant_id.blank? %><br><br><br>
-   
-        <%end%>
+      <%= @bets.user_participant.email if !@bets.user_participant_id.blank? %><br><br>
+    <%end%>
+
+
+    Show Proof: <%= link_to "View Image", @bets.proof.url, :popup => ['new_window_name', 'height=300,width=600'] %>
+<%= link_to "Edit" , edit_bet_path, class: "btn btn-primary"  if current_user.id == @bets.user_owner_id%> 
 <h1>Users Posts</h1>
 
 <% @bets.posts.each do |post| %>

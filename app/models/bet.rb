@@ -11,14 +11,19 @@ class Bet < ActiveRecord::Base
   has_attached_file :proof, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
  	validates_attachment_content_type :proof, :content_type => /\Aimage\/.*\Z/
 
- 	validates :name, :description, :end_date_of_challenge, presence: true
+ 	validates :name, :description, :end_date_of_challenge, :credit, presence: true
  	
   after_validation(on: :create) do 
    	self.active = false
+    self.status = 1
   end
 
   scope :active, ->{where active:true, status: 1}
   scope :finished, ->{where active: true, status: 0}
-  scope :inactive, ->{where active:false}	
+  #scope :inactive, ->{where active:false, user_owner_id: current_user.id}	
+
+  scope :inactive, lambda { |user|
+    where(:user_owner_id => user.id, active:false) 
+  }
 
 end

@@ -1,4 +1,4 @@
-Wprowadz dane zakladu, uzytkownik: <%=@user.email%>, id: <%=@user.id%> 
+Wprowadz dane zakladu
 
 <%= form_for(@bets) do |t| %>
 	<div class="backgroud_for_bets opacity">
@@ -7,6 +7,6 @@ Wprowadz dane zakladu, uzytkownik: <%=@user.email%>, id: <%=@user.id%>
 		End Date: <%= t.date_select :end_date_of_challenge %><br>
 		Send an email Invitation to your friend: <br>
 		<%= t.email_field :invitation%><br><br>
-		<%= t.submit "Challenge" %>
+		<%= t.submit "Confirm" %>
 	</div>
 <%end%>

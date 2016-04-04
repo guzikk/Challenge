@@ -5,8 +5,8 @@
       		<%= render partial: 'partial', locals: {t: t} %>
 
       		<div class="bet_content_winner">
-      		<% if !t.user_winner_id.blank? %>
-      			Winner: <%= t.user_winner.email %>		
+      		<% if !t.user_winner_id.blank? && !t.user_participant_id.blank? %>
+      		<h3><div class="label label-warning">	Winner: <%= t.user_winner.email %> </div></h3>		
       		<%end%>
       		</div>
       	</div>      
