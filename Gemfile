@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+
+gem 'fancybox2-rails'
 gem "twitter-bootstrap-rails"
 gem 'rails_admin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

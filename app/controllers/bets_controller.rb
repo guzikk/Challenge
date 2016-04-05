@@ -16,6 +16,27 @@ class BetsController < ApplicationController
         t.save
       end
     end
+
+    bets = Bet.finished
+    bets.each do |t|
+      if t.active == true && !t.user_winner_id.blank?
+        if t.user_owner_id == t.user_winner_id
+          t.user_owner.credit = (t.user_owner.credit + t.credit)
+          t.user_participant.credit = t.user_participant.credit - t.credit
+          t.active = false
+          t.save
+          t.user_owner.save
+          t.user_participant.save
+        elsif t.user_participant_id == t.user_winner_id
+          t.user_participant.credit = t.user_participant.credit + t.credit
+          t.user_owner.credit = t.user_owner.credit - t.credit
+          t.active = false
+          t.save
+          t.user_participant.save
+          t.user_owner.save
+        end
+      end
+    end
   end
 
   def index
@@ -91,7 +112,7 @@ class BetsController < ApplicationController
   end
 
   def bet_params
-  	params.require(:bet).permit(:name, :description, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation, :status, :proof)
+  	params.require(:bet).permit(:name, :description, :image, :user_owner_id, :user_participant_id, :end_date_of_challenge, :invitation, :status, :proof, :video_url, :credit)
   end
 
 end

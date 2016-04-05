@@ -13,12 +13,22 @@ User Participant:
 <% if @bets.user_participant_id.blank? && @bets.status == 1%>
       <div class="btn btn-default"><%= link_to("Join", {:action=>'join', :id=>@bets.id})%></div><br><br>
     <%else%>
-      <%= @bets.user_participant.email if !@bets.user_participant_id.blank? %><br><br>
+      <%= @bets.user_participant.email if !@bets.user_participant_id.blank? %><br>
     <%end%>
-
-
-    Show Proof: <%= link_to "View Image", @bets.proof.url, :popup => ['new_window_name', 'height=300,width=600'] %>
-<%= link_to "Edit" , edit_bet_path, class: "btn btn-primary"  if current_user.id == @bets.user_owner_id%> 
+User Winner: <%= @bets.user_winner.email if !@bets.user_winner_id.blank? %><br><br>
+<%if !@bets.proof.blank?%>
+<%= link_to "Image Proof", "#proof", class: "fancybox btn btn-primary" %>
+<div style="display:none;">
+  <div id="proof">
+  <%=image_tag(@bets.proof.url, width: '500px', height: '500px')%>
+  </div>
+</div>
+<%end%>
+<%if !@bets.video_url.blank?%>
+<%= link_to "Video Proof", @bets.video_url, class: "fancybox fancybox.iframe { width:500px, height:500px } btn btn-primary" %>
+<%end%>
+    
+<%= link_to "Edit" , edit_bet_path, class: "btn btn-primary"  if user_signed_in? && current_user.id == @bets.user_owner_id%> 
 <h1>Users Posts</h1>
 
 <% @bets.posts.each do |post| %>
@@ -41,3 +51,5 @@ User Participant:
     </div>
   <% end %>
 <% end %>
+
+
