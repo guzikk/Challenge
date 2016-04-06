@@ -21,7 +21,7 @@ class BetsController < ApplicationController
     bets.each do |t|
       if t.active == true && !t.user_winner_id.blank?
         if t.user_owner_id == t.user_winner_id
-          t.user_owner.credit = (t.user_owner.credit + t.credit)
+          t.user_owner.credit = t.user_owner.credit + t.credit
           t.user_participant.credit = t.user_participant.credit - t.credit
           t.active = false
           t.save

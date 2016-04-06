@@ -12,6 +12,9 @@
 	Name of Bet: <%= link_to(t.name, {:action=>'show', :id=>t.id})%><br>
 	Description: <%= t.description %><br>
 	Stake: <%= t.credit %><br>
+	<% if !t.user_winner_id.blank? && !t.user_participant_id.blank? %>
+    	<h3><div class="label label-warning">	Winner: <%= t.user_winner.email %> </div></h3>	
+    <%end%>
 </div>
 <% if t.user_participant_id.blank? %>
 	<div class="user_participant btn button"><%= link_to("Join", {:action=>'join', :id=>t.id})%></div>

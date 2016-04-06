@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Challenge" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Take The Challenge" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -45,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Bets", root_path , class: "navbar-brand" %>
+        <%= link_to "Take The Challenge", root_path , class: "navbar-brand" %>
         
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar_login">
@@ -78,7 +78,7 @@
           
         </div><!--/span-->
         <div class="col-lg-6">
-          <%= bootstrap_flash %>
+        <!--  <%= bootstrap_flash %> -->
           <%= yield %>
         </div>
         <div class="col-lg-3">
