@@ -5,10 +5,7 @@ class Bet < ActiveRecord::Base
   belongs_to :user_winner, class_name: "User"
   has_many :posts, dependent: :destroy
 
- 	has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
- 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-
-  has_attached_file :proof, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+ 	has_attached_file :proof, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
  	validates_attachment_content_type :proof, :content_type => /\Aimage\/.*\Z/
 
  	validates :name, :description, :end_date_of_challenge, :credit, presence: true
@@ -21,7 +18,7 @@ class Bet < ActiveRecord::Base
   scope :active, ->{where active:true, status: 1}
   scope :finished, ->{where status: 0}
   scope :inactive, lambda { |user|
-    where(:user_owner_id => user.id, active:false) 
+    where(:user_owner_id => user.id, active:false, :status => 1) 
   }
 
   scope :my_bets_owner, lambda { |user|

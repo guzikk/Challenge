@@ -28,11 +28,6 @@ ActiveRecord::Schema.define(version: 20160329200223) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "surname"
-    t.integer  "credit"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
@@ -42,10 +37,6 @@ ActiveRecord::Schema.define(version: 20160329200223) do
     t.string   "name"
     t.text     "description"
     t.integer  "credit"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.string   "proof_file_name"
     t.string   "proof_content_type"
     t.integer  "proof_file_size"

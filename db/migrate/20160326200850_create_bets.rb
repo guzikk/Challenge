@@ -4,7 +4,6 @@ class CreateBets < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :credit
-      t.attachment :image
       t.attachment :proof
       t.boolean :active
       t.datetime :end_date_of_challenge
