@@ -20,10 +20,16 @@ class Bet < ActiveRecord::Base
 
   scope :active, ->{where active:true, status: 1}
   scope :finished, ->{where status: 0}
-  #scope :inactive, ->{where active:false, user_owner_id: current_user.id}	
-
   scope :inactive, lambda { |user|
     where(:user_owner_id => user.id, active:false) 
   }
 
+  scope :my_bets_owner, lambda { |user|
+    where(:user_owner_id  => user.id) 
+  }
+
+  scope :my_bets_participant, lambda { |user|
+    where(:user_participant_id => user.id) 
+  }
+   
 end

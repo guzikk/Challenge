@@ -1,10 +1,9 @@
 class BetsController < ApplicationController
   
   before_action :check_finished
-  before_action :set_bet, only: [:show, :edit, :update, :destroy]
+  before_action :set_bet, only: [:show, :edit, :update, :join]
   before_action :authenticate_user!, except: [:index, :show, :finished]
   
-
   layout 'bootstrap'
 
   def check_finished
@@ -17,6 +16,7 @@ class BetsController < ApplicationController
       end
     end
 
+    #adding or removing credit for users
     bets = Bet.finished
     bets.each do |t|
       if t.active == true && !t.user_winner_id.blank?
@@ -55,9 +55,9 @@ class BetsController < ApplicationController
   end
 
   def my
-    @bets = current_user.bets
+    @bets = Bet.my_bets_owner(current_user)
+    @bets_participant = Bet.my_bets_participant(current_user)
     @current_date = DateTime.now
-    render :index
   end
 
   def inactive
@@ -77,19 +77,16 @@ class BetsController < ApplicationController
   end	
 
   def show
-  	@bets = Bet.find(params[:id])
-    @post = Post.new
+  	@post = Post.new
   end
 
   def edit
-
   end
 
-  def join
-    @bets = Bet.find(params[:id])
+  def join #join to challenge
     if @bets.status == 1 && @bets.active == true && @bets.user_owner_id != current_user.id
-      @bets.user_participant_id = current_user.id
-      @bets.save
+       @bets.user_participant_id = current_user.id
+       @bets.save
     else
       flash[:notice] = "I'm sorry you can't join to this challenge"
     end
@@ -99,14 +96,13 @@ class BetsController < ApplicationController
 
   def update
     if	@bets.update(bet_params)
-  	    redirect_to @bets
+  	  redirect_to @bets
   	else
   		redirect 'new'	
   	end	  		
   end
 
   private
-  
   def set_bet
     @bets = Bet.find(params[:id])
   end

@@ -1,12 +1,10 @@
 <h1>Bets</h1> 
-<div class="opacity">
-	<% @bets.each do |t| %>
-		<div class="backgroud_for_bets">
-		<%= render partial: 'partial', locals: {t: t} %>
-			
-		</div>
-	<%end%>
-</div>
+<% @bets.each do |t| %>
+	<div class="backgroud_for_bets opacity">
+	<%= render partial: 'partial', locals: {t: t} %>
+	</div>
+<%end%>
+
 
 
 
