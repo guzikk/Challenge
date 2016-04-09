@@ -91,7 +91,5 @@ Rails.application.configure do
 }
 # Specify what domain to use for mailer URLs
 config.action_mailer.default_url_options = {host: "https://sleepy-springs-45869.herokuapp.com"}
-end
-
 
 end
