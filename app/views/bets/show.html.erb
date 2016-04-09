@@ -8,6 +8,7 @@
   Name of Bet: <%= @bets.name %><br>
   Description: <%= @bets.description %><br>
   Stake: <%= @bets.credit %><br>
+  End date of challenge: <%= @bets.end_date_of_challenge.to_date%><br>
   User Owner: <%= @bets.user_owner.email %><br>
   User Participant:
   <%if @bets.user_participant_id.blank? && @bets.status == 1%>
@@ -21,13 +22,13 @@
     <%= link_to "Image Proof", "#proof", class: "fancybox btn btn-primary" %>
     <div style="display:none;">
       <div id="proof">
-        <%=image_tag(@bets.proof.url, width: '500px', height: '500px')%>
+        <%=image_tag(@bets.proof.url, width: 'auto', height: '500px')%>
       </div>
     </div>
   <%end%>
 
   <%if !@bets.video_url.blank?%>
-    <%= link_to "Video Proof", @bets.video_url, class: "fancybox fancybox.iframe { width:500px, height:500px } btn btn-primary" %>
+    <%= link_to "Video Proof", @bets.video_url, class: "fancybox fancybox.iframe { width:auto, height:500px } btn btn-primary" %>
   <%end%>
     
   <%= link_to "Edit" , edit_bet_path, class: "btn btn-primary"  if user_signed_in? && current_user.id == @bets.user_owner_id%> 
