@@ -67,8 +67,11 @@ class BetsController < ApplicationController
   end
 
   def create
-  	@bets = current_user.bets.new(bet_params)
+    
+  	@bets = Bet.new(bet_params)
+    @bets.user_owner = current_user 
   	if @bets.save!
+
       BetMailer.welcome_email(@bets).deliver if !@bets.invitation.empty?
       redirect_to action: 'index'
   	else
