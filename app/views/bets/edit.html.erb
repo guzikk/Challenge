@@ -1,21 +1,21 @@
-<div class="backgroud_for_form opacity">
-<h1> Edit bet <%=@bets.name%></h1>
-<%= form_for(@bets) do |t| %>
-	<% if @bets.user_participant_id.blank? && @bets.status == 1%>
-		Name of Bet<br> <%= t.text_field :name, class:"form_style"%><br>
-		Description<br> <%= t.text_area :description, class:"form_style"%><br>
-		Stake<br> <%= t.number_field :credit, class:"form_style" %><br>
-		End Date<br> <%= t.date_select :end_date_of_challenge, class:"form_style"%>
-	<%else%>
-		<p class:"form_style"> Name of Bet: <%= @bets.name %></p>
-		<p class:"form_style">Description: <%= @bets.description%></p>
-		<p class:"form_style">Stake: <%= @bets.credit %></p>
-		<p class:"form_style">End Date: <%= @bets.end_date_of_challenge.to_date %></p>
-		<p class:"form_style">My challenge is finished: <%= t.check_box :status, {}, 0,1 %></p>
-		Put your image proof: <br> <%= t.file_field :proof, class:"form_style" %>
-		Put link to your video proof: <br> <%= t.text_field :video_url, class:"form_style" %>
+<div class='backgroud_for_form opacity'>
+	<h1> Edit bet <%= @bets.name%></h1>
+	<%= form_for(@bets) do |t|%>
+		<% if @bets.user_participant_id.blank? && @bets.status == 1%>
+			Name of Bet<br> <%= t.text_field :name, class:'form_style'%><br>
+			Description<br> <%= t.text_area :description, class:'form_style'%><br>
+			Stake<br> <%= t.number_field :credit, class:'form_style' %><br>
+			End Date<br> <%= t.date_select :end_date_of_challenge, class:'form_style'%>
+		<%else%>
+			<p class:'form_style'> Name of Bet: <%= @bets.name%></p>
+			<p class:'form_style'>Description: <%= @bets.description%></p>
+			<p class:'form_style'>Stake: <%= @bets.credit%></p>
+			<p class:'form_style'>End Date: <%= @bets.end_date_of_challenge.to_date%></p>
+			<p class:'form_style'>My challenge is finished: <%= t.check_box :status, {}, 0,1%></p>
+			Put your image proof: <br> <%= t.file_field :proof, class:'form_style'%>
+			Put link to your video proof: <br> <%= t.text_field :video_url, class:'form_style'%>
+		<%end%>
+		<br><br>
+		<%= t.submit 'Confirm' ,class:'btn btn-primary'%>
 	<%end%>
-	<br><br>
-	<%= t.submit "Confirm" ,class:"btn btn-primary" %>
-<%end%>
 </div>

@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Take The Challenge" %></title>
-    <%= csrf_meta_tags %>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title><%= content_for?(:title) ? yield(:title) : 'Take The Challenge'%></title>
+    <%= csrf_meta_tags%>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag 'application', media: 'all'%>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '144x144'%>
 
     <!-- For iPhone with high-resolution Retina display: -->
     <!-- Size should be 114 x 114 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '114x114'%>
 
     <!-- For first- and second-generation iPad: -->
     <!-- Size should be 72 x 72 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', sizes: '72x72'%>
 
     <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
     <!-- Size should be 57 x 57 pixels -->
-    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png'%>
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <%= favicon_link_tag 'favicon.ico', rel: 'shortcut icon'%>
 
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'application'%>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -37,46 +37,46 @@
     <![endif]-->
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+    <div class='navbar navbar-inverse navbar-static-top'>
+      <div class='container'>
+        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-responsive-collapse'>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
         </button>
-        <%= link_to "Take The Challenge", root_path , class: "navbar-brand" %>
+        <%= link_to 'Take The Challenge', root_path , class: 'navbar-brand'%>
         
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav navbar_login">
-            <li><%= link_to "Bets", bets_path  %></li>
-            <li><%= link_to "Finished", finished_bets_path %></li>
-            <%if user_signed_in? %>
-              <li><%= link_to "My Bets", my_bets_path %></li>
-              <li><%= link_to "Inactive", inactive_bets_path  %></li>
-              <li><%= link_to "New", new_bet_path  %></li>
+        <div class='navbar-collapse collapse navbar-responsive-collapse'>
+          <ul class='nav navbar-nav navbar_login'>
+            <li><%= link_to 'Bets', bets_path%></li>
+            <li><%= link_to 'Finished', finished_bets_path%></li>
+            <%if user_signed_in?%>
+              <li><%= link_to 'My Bets', my_bets_path%></li>
+              <li><%= link_to 'Inactive', inactive_bets_path%></li>
+              <li><%= link_to 'New', new_bet_path%></li>
             <%end%>
             
-            <% if user_signed_in? %>
-              <li> <%= link_to current_user.email, edit_user_registration_path %></li>
-              <li> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% if user_signed_in?%>
+              <li> <%= link_to current_user.email, edit_user_registration_path%></li>
+              <li> <%= link_to 'Logout', destroy_user_session_path, method: :delete%></li>
             <%else%>
-              <li> <%= link_to "Login", new_user_session_path %></li>
-              <li> <%= link_to "Sign_up", new_user_registration_path %></li>
+              <li> <%= link_to 'Login', new_user_session_path%></li>
+              <li> <%= link_to 'Sign_up', new_user_registration_path%></li>
             <%end%>
           </ul>
         </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3">
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-3'>
         </div>
-        <div class="col-lg-6">
+        <div class='col-lg-6'>
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-        <div class="col-lg-3">
+        <div class='col-lg-3'>
         </div>
       </div>
 

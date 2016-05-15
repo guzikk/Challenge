@@ -1,12 +1,12 @@
-<div class="backgroud_for_form opacity">
-<h1>New bet</h1>
-<%= form_for(@bets) do |t| %>
-	Name of Bet <br> <%= t.text_field :name, class:"form_style" %><br>
-	Description <br> <%= t.text_area :description , class:"form_style"%><br>
-	Stake<br> <%= t.text_field :credit , class:"form_style"%><br>
-	End Date<br> <%= t.date_select :end_date_of_challenge , class:"form_style"%><br>
-	<br>Send an email Invitation to your friend: <br>
-	<%= t.email_field :invitation , class:"form_style"%><br><br>
-	<%= t.submit "Confirm", class: "btn btn-primary" %>
-<%end%>
+<div class='backgroud_for_form opacity'>
+	<h1>New bet</h1>
+	<%= form_for(@bets) do |t|%>
+		Name of Bet <br> <%= t.text_field :name, class:'form_style' %><br>
+		Description <br> <%= t.text_area :description , class:'form_style'%><br>
+		Stake<br> <%= t.text_field :credit , class:'form_style'%><br>
+		End Date<br> <%= t.date_select :end_date_of_challenge , class:'form_style'%><br>
+		<br>Send an email Invitation to your friend: <br>
+		<%= t.email_field :invitation , class:'form_style'%><br><br>
+		<%= t.submit 'Confirm', class: 'btn btn-primary'%>
+	<%end%>
 </div>

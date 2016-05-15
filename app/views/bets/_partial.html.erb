@@ -1,30 +1,30 @@
-<% start_days = (t.end_date_of_challenge.to_date - t.created_at.to_date).to_i %>
-<% current_days= (t.end_date_of_challenge.to_date - @current_date.to_date).to_i %>
+<% start_days = (t.end_date_of_challenge.to_date - t.created_at.to_date).to_i%>
+<% current_days= (t.end_date_of_challenge.to_date - @current_date.to_date).to_i%>
 <% current_days_percentage = (1-(current_days.to_f/start_days.to_f))*100 %>
-<div class="progress ">
-	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="current_days_percentage" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_days_percentage%>%">
-		<%if current_days_percentage <= 100 %>
-		<%= current_days_percentage.to_i %>%
+<div class='progress'>
+	<div class='progress-bar progress-bar-danger' role='progressbar' aria-valuenow='current_days_percentage' aria-valuemin='0' aria-valuemax='100' style='width: <%= current_days_percentage%>%'>
+		<% if current_days_percentage <= 100%>
+			<%= current_days_percentage.to_i%>%
 		<%else%>
-		100%
+			100%
 		<%end%>
 	</div>
 </div>
 <!--image_tag if/else to time solve problem with default_url in paperclip --> 
-<div class="user_owner"> <%= image_tag t.user_owner.avatar.blank? ? 'missing.png' : t.user_owner.avatar.url, class: "img-circle", width: "70px", height: "70px" %></div>
+<div class='user_owner'> <%= image_tag t.user_owner.avatar.blank? ? 'missing.png' : t.user_owner.avatar.url, class: 'img-circle', width: '70px', height: '70px'%></div>
 <div class="bet_content">
 	Name of Bet: <%= link_to(t.name, {:action=>'show', :id=>t.id})%><br>
-	Description: <%= t.description %><br>
-	Stake: <%= t.credit %><br>
-	<% if !t.user_winner_id.blank? && !t.user_participant_id.blank? %>
-    	<h3><div class="label label-warning">Winner: <%= t.user_winner.email %> </div></h3>	
+	Description: <%= t.description%><br>
+	Stake: <%= t.credit%><br>
+	<% if !t.user_winner_id.blank? && !t.user_participant_id.blank?%>
+    	<h3><div class='label label-warning'>Winner: <%= t.user_winner.email%> </div></h3>	
     <%end%>
 </div>
-<% if t.user_participant_id.blank? %>
-	<div class="user_participant btn button"><%= link_to("Join", {:action=>'join', :id=>t.id})%></div>
+<% if t.user_participant_id.blank?%>
+	<div class='user_participant btn button'><%= link_to('Join', {:action=>'join', :id=>t.id})%></div>
 <%else%>
 <!--image_tag if/else to time solve problem with default_url in paperclip --> 
-	<div class="user_participant">
-		<%= image_tag t.user_participant.avatar.blank? ? 'missing.png' : t.user_participant.avatar.url, class: "img-circle", width: "70px", height: "70px"%>
+	<div class='user_participant'>
+		<%= image_tag t.user_participant.avatar.blank? ? 'missing.png' : t.user_participant.avatar.url, class: 'img-circle', width: '70px', height: '70px'%>
 	</div>
 <%end%>

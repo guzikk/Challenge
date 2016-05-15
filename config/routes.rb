@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'posts/index'
   resources :posts
 
-
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   

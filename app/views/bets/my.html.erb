@@ -1,14 +1,14 @@
 <h1>My Bets</h1> 
-<% @bets.each do |t| %>
-	<div class="backgroud_for_bets opacity">
-		<%= render partial: 'partial', locals: {t: t} %>
+<% @bets.each do |t|%>
+	<div class='backgroud_for_bets opacity'>
+		<%= render partial: 'partial', locals: {t: t}%>
 	</div>
 <%end%>
 
 <br><br>
 <h1>Bets to which I joined</h1> 
-<% @bets_participant.each do |t| %>
-	<div class="backgroud_for_bets opacity">
-		<%= render partial: 'partial', locals: {t: t} %>
+<% @bets_participant.each do |t|%>
+	<div class='backgroud_for_bets opacity'>
+		<%= render partial: 'partial', locals: {t: t}%>
 	</div>
 <%end%>
